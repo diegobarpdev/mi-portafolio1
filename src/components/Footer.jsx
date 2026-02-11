@@ -74,7 +74,7 @@ function Footer() {
                     <Logo>Diegobarpdev</Logo>
                     <SocialLinks>
                         <SocialLink
-                            href="https://github.com/diegobarp"
+                            href="https://github.com/diegobarpdev"
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="GitHub"
