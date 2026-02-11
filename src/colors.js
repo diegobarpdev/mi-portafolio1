@@ -19,6 +19,7 @@ export const colors = {
   accent: 'var(--color-accent)',
   accentDark: 'var(--color-accent-dark)',
   accentLight: 'var(--color-accent-light)',
+  accentGlow: 'var(--color-accent-glow)',
   
   // Colores neutros
   white: 'var(--color-white)',
@@ -58,7 +59,8 @@ export const shadows = {
   sm: 'var(--shadow-sm)',
   md: 'var(--shadow-md)',
   lg: 'var(--shadow-lg)',
-  xl: 'var(--shadow-xl)'
+  xl: 'var(--shadow-xl)',
+  glow: 'var(--shadow-glow)'
 };
 
 export const borderRadius = {

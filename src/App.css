@@ -1,11 +1,27 @@
 /* Solo estilos globales y animaciones */
 @keyframes float {
+
   0%,
   100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translateY(0px);
   }
+
   50% {
-    transform: translateY(-20px) rotate(180deg);
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
   }
 }
 
@@ -15,6 +31,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -25,30 +42,9 @@
   from {
     opacity: 0;
   }
-  to {
-    opacity: 1;
-  }
-}
 
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
   to {
     opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
   }
 }
 
@@ -56,7 +52,7 @@
 .section-fade-in {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .section-fade-in.visible {
@@ -82,35 +78,27 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  /* Offset for fixed header */
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-accent-glow);
+  color: var(--color-white);
 }
 
 /* Efectos hover para enlaces de navegación */
-a[href="#inicio"]:hover,
-a[href="#sobre-mi"]:hover,
-a[href="#skills"]:hover,
-a[href="#contacto"]:hover {
-  color: var(--color-accent) !important;
-}
-
-/* Efectos hover para botones */
-a[href="#proyectos"]:hover,
-a[href="#contacto"]:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: var(--shadow-lg) !important;
-}
-
-
-
 a {
   text-decoration: none;
+  color: inherit;
+  transition: all var(--transition-normal);
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -140,6 +128,7 @@ a {
 
 /* Tablets (768px y menos) */
 @media (max-width: 768px) {
+
   /* Header responsive */
   .nav-menu {
     display: none !important;
@@ -253,6 +242,7 @@ a {
 
 /* Móviles pequeños (480px y menos) */
 @media (max-width: 480px) {
+
   /* Header móvil */
   .header-nav {
     padding: 0.75rem 0 !important;

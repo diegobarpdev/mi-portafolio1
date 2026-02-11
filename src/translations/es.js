@@ -14,12 +14,12 @@ export const es = {
   // Hero
   hero: {
     greeting: "Hola, soy",
-    subtitle: "Desarrollador Frontend",
+    subtitle: "Desarrollador Full Stack",
     description:
-      "Desarrollador proactivo y motivado, especializado en frontend con experiencia en React, JavaScript, React Native, Flutter y tecnologías modernas. También tengo conocimientos básicos en backend con Python y Express.js. Apasionado por crear interfaces web y móviles atractivas y funcionales que generen valor real para las empresas.",
+      "Transformo ideas en soluciones digitales robustas y escalables. Con experiencia sólida en todo el stack de desarrollo, desde interfaces interactivas con React y React Native hasta arquitecturas backend eficientes con Python y Node.js. Mi enfoque es crear software de alto impacto que impulse el éxito empresarial.",
     buttons: {
-      verProyectos: "Ver Proyectos",
-      contactar: "Contactar",
+      verProyectos: "Ver Portafolio",
+      contactar: "Hablemos",
     },
   },
 

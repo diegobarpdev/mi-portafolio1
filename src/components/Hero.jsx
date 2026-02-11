@@ -17,150 +17,176 @@ const HeroSection = styled.section`
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: ${colors.primaryDark};
+  justify-content: center;
+  background: ${colors.bgPrimary};
   position: relative;
   overflow: hidden;
   padding-top: 80px;
-  opacity: 0;
-  animation: fadeIn 1s ease-out forwards;
+`;
 
-  &.visible {
-    opacity: 1;
+const BackgroundGradient = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+`;
+
+const Blob = styled.div`
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: float 20s ease-in-out infinite;
+  
+  &:nth-child(1) {
+    top: -10%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: ${colors.accentDark};
+    animation-delay: 0s;
+  }
+  
+  &:nth-child(2) {
+    bottom: -10%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: #4f46e5; /* Indigo 600 */
+    animation-delay: -5s;
+    animation-duration: 25s;
+  }
+  
+  &:nth-child(3) {
+    top: 40%;
+    left: 40%;
+    width: 300px;
+    height: 300px;
+    background: #0ea5e9; /* Sky 500 */
+    opacity: 0.3;
+    animation-delay: -10s;
+    animation-duration: 15s;
   }
 `;
 
 const HeroContent = styled.div`
-  max-width: 1200px;
+  max-width: 1000px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
   position: relative;
   z-index: 2;
-  min-height: calc(100vh - 80px);
 `;
 
 const HeroText = styled.div`
-  color: ${colors.textWhite};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const HeroBadge = styled.span`
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(99, 102, 241, 0.1);
+  color: ${colors.accentLight};
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  width: fit-content;
+  backdrop-filter: blur(5px);
 `;
 
 const HeroTitle = styled.h1`
-  font-size: 3.5rem;
-  font-weight: 700;
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 800;
   margin: 0 0 1.5rem 0;
-  line-height: 1.2;
-  text-align: left;
+  line-height: 1.1;
+  color: ${colors.textWhite};
+  letter-spacing: -0.02em;
+
+  span {
+    background: linear-gradient(135deg, ${colors.accentLight} 0%, ${colors.accent} 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 `;
 
-const Highlight = styled.span`
-  color: ${colors.accent};
-  position: relative;
-`;
-
-const HeroSubtitle = styled.p`
-  font-size: 1.5rem;
-  margin: 0 0 1rem 0;
-  opacity: 0.9;
-  font-weight: 300;
-  text-align: left;
+const HeroSubtitle = styled.h2`
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: ${colors.textSecondary};
+  font-weight: 500;
+  margin: 0 0 2rem 0;
+  
+  strong {
+    color: ${colors.textWhite};
+  }
 `;
 
 const HeroDescription = styled.p`
-  font-size: 1.1rem;
-  margin: 0 0 2.5rem 0;
-  opacity: 0.8;
-  line-height: 1.6;
-  text-align: left;
+  font-size: 1.25rem;
+  margin: 0 0 3rem 0;
+  color: ${colors.textMuted};
+  line-height: 1.7;
+  max-width: 700px;
 `;
 
 const HeroButtons = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const Button = styled.a`
-  display: inline-block;
-  padding: 0.875rem 2rem;
-  border-radius: ${borderRadius.md};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  border-radius: ${borderRadius.lg};
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
+  font-size: 1.1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 `;
 
 const PrimaryButton = styled(Button)`
   background: ${colors.accent};
-  color: ${colors.primaryDark};
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
 
   &:hover {
     background: ${colors.accentDark};
     transform: translateY(-2px);
-    box-shadow: ${shadows.lg};
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
   }
 `;
 
 const OutlineButton = styled(Button)`
-  background: transparent;
-  color: ${colors.accent};
-  border-color: ${colors.accent};
-  position: relative;
-  z-index: 1;
+  background: rgba(255, 255, 255, 0.03);
+  color: ${colors.textWhite};
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 
   &:hover {
-    background: ${colors.accent};
-    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: ${colors.textWhite};
     transform: translateY(-2px);
-    box-shadow: ${shadows.lg};
   }
-`;
-
-const HeroShapes = styled.div`
-  position: relative;
-  height: 400px;
-`;
-
-const ShapeBase = styled.div`
-  position: absolute;
-  border-radius: 50%;
-  background: ${colors.accent};
-  opacity: 0.1;
-  animation: ${floatAnimation} 6s ease-in-out infinite;
-`;
-
-const Shape1 = styled(ShapeBase)`
-  width: 200px;
-  height: 200px;
-  top: 20%;
-  right: 10%;
-  animation-delay: 0s;
-`;
-
-const Shape2 = styled(ShapeBase)`
-  width: 150px;
-  height: 150px;
-  top: 60%;
-  right: 30%;
-  animation-delay: 2s;
-`;
-
-const Shape3 = styled(ShapeBase)`
-  width: 100px;
-  height: 100px;
-  top: 10%;
-  right: 50%;
-  animation-delay: 4s;
 `;
 
 function Hero() {
   const { language } = useLanguage();
   const t = translations[language];
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
 
   // Función para scroll suave
   const smoothScrollTo = (elementId) => {
@@ -180,24 +206,27 @@ function Hero() {
   };
 
   return (
-    <HeroSection
-      id="inicio"
-      className={`hero-section ${
-        isVisible ? "section-fade visible" : "section-fade"
-      }`}
-    >
-      <HeroContent className="hero-content">
-        <HeroText>
-          <HeroTitle className="hero-title">
-            {t.hero.greeting} <Highlight>Diego Barbecho</Highlight>
+    <HeroSection id="inicio">
+      <BackgroundGradient>
+        <Blob />
+        <Blob />
+        <Blob />
+      </BackgroundGradient>
+
+      <HeroContent>
+        <HeroText className="section-fade-in visible">
+          <HeroBadge>🚀 Available for work</HeroBadge>
+          <HeroTitle>
+            {t.hero.greeting} <br />
+            <span>Diego Barbecho</span>
           </HeroTitle>
-          <HeroSubtitle className="hero-subtitle">
+          <HeroSubtitle>
             {t.hero.subtitle}
           </HeroSubtitle>
-          <HeroDescription className="hero-description">
+          <HeroDescription>
             {t.hero.description}
           </HeroDescription>
-          <HeroButtons className="hero-buttons">
+          <HeroButtons>
             <PrimaryButton
               href="#proyectos"
               onClick={(e) => handleNavClick(e, "proyectos")}
@@ -212,11 +241,6 @@ function Hero() {
             </OutlineButton>
           </HeroButtons>
         </HeroText>
-        <HeroShapes>
-          <Shape1 />
-          <Shape2 />
-          <Shape3 />
-        </HeroShapes>
       </HeroContent>
     </HeroSection>
   );

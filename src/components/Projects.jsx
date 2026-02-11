@@ -5,17 +5,9 @@ import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../translations";
 
 const ProjectsSection = styled.section`
-  padding: 6rem 0;
+  padding: 8rem 0;
   background: ${colors.bgPrimary};
   position: relative;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-
-  &.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
 `;
 
 const Container = styled.div`
@@ -25,132 +17,166 @@ const Container = styled.div`
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 800;
   text-align: center;
-  margin: 0 0 3rem 0;
-  color: ${colors.accent};
+  margin: 0 0 4rem 0;
+  background: linear-gradient(135deg, ${colors.textWhite} 0%, ${colors.textSecondary} 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: ${colors.accent};
+    border-radius: 2px;
+  }
 `;
 
 const ProjectsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+  gap: 2.5rem;
+  margin-top: 2rem;
 `;
 
 const ProjectCard = styled.div`
   background: ${colors.bgCard};
-  border-radius: ${borderRadius.lg};
-  padding: 2rem;
-  box-shadow: ${shadows.lg};
+  border-radius: ${borderRadius.xl};
+  padding: 2.5rem;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
-  border: 1px solid ${colors.primaryLight};
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   &:hover {
     transform: translateY(-10px);
-    box-shadow: ${shadows.xl};
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(99, 102, 241, 0.1);
+
+    h3 {
+      color: ${colors.accentLight};
+    }
   }
 `;
 
-const ProjectTitle = styled.h3`
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: ${colors.accent};
-  margin-bottom: 1rem;
+const ProjectContent = styled.div`
   position: relative;
   z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ProjectTitle = styled.h3`
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: ${colors.textWhite};
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
 `;
 
 const ProjectCompany = styled.p`
   color: ${colors.accent};
   font-weight: 600;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 2;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: ${colors.accent};
+  }
 `;
 
 const ProjectDescription = styled.p`
   color: ${colors.textSecondary};
-  line-height: 1.6;
+  line-height: 1.7;
   margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 2;
+  flex-grow: 1;
+  font-size: 1.05rem;
 `;
 
 const ProjectTech = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 2;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
 `;
 
 const TechTag = styled.span`
-  background: ${colors.accent};
-  color: ${colors.primaryDark};
-  padding: 0.25rem 0.75rem;
-  border-radius: ${borderRadius.sm};
-  font-size: 0.875rem;
-  font-weight: 600;
-`;
-
-const ProjectLink = styled.a`
-  display: inline-block;
-  background: ${colors.primary};
-  color: ${colors.textWhite};
-  padding: 0.75rem 1.5rem;
-  border-radius: ${borderRadius.md};
-  text-decoration: none;
-  font-weight: 600;
+  background: rgba(99, 102, 241, 0.1);
+  color: ${colors.accentLight};
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid rgba(99, 102, 241, 0.2);
   transition: all 0.3s ease;
-  position: relative;
-  z-index: 2;
 
   &:hover {
-    background: ${colors.accent};
-    color: ${colors.primaryDark};
+    background: rgba(99, 102, 241, 0.2);
+    border-color: rgba(99, 102, 241, 0.4);
+    transform: translateY(-1px);
   }
 `;
 
-const CardShape = styled.div`
+const ProjectLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  color: ${colors.textWhite};
+  padding: 0.875rem 1.5rem;
+  border-radius: ${borderRadius.lg};
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  margin-top: auto;
+
+  &:hover {
+    background: ${colors.accent};
+    border-color: ${colors.accent};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  }
+`;
+
+const CardGlow = styled.div`
   position: absolute;
-  z-index: 1;
-`;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 100% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
 
-const CardShape1 = styled(CardShape)`
-  top: -20px;
-  right: -20px;
-  width: 80px;
-  height: 80px;
-  background: ${colors.accent};
-  border-radius: 50%;
-  opacity: 0.1;
-`;
-
-const CardShape2 = styled(CardShape)`
-  bottom: -30px;
-  left: -30px;
-  width: 100px;
-  height: 100px;
-  background: ${colors.primary};
-  border-radius: 50%;
-  opacity: 0.1;
-`;
-
-const CardShape3 = styled(CardShape)`
-  top: 50%;
-  right: -40px;
-  width: 60px;
-  height: 60px;
-  background: ${colors.accent};
-  border-radius: 50%;
-  opacity: 0.15;
+  ${ProjectCard}:hover & {
+    opacity: 1;
+  }
 `;
 
 function Projects() {
@@ -162,7 +188,7 @@ function Projects() {
   const projectsData = [
     {
       id: 1,
-      technologies: ["React"],
+      technologies: ["React", "Styled Components", "Vite"],
       link: "https://www.maxximundo.com/",
     },
     {
@@ -172,22 +198,22 @@ function Projects() {
     },
     {
       id: 3,
-      technologies: ["React", "PostGreSQL", "Tailwind CSS", "Railway"],
+      technologies: ["React", "PostgreSQL", "Tailwind CSS", "Railway"],
       link: "https://www.aimec-ec.com/",
     },
     {
       id: 4,
-      technologies: ["React"],
+      technologies: ["React", "Redux", "Material UI"],
       link: "https://heyagendo.com/",
     },
     {
       id: 5,
-      technologies: ["React"],
+      technologies: ["React", "TypeScript", "Node.js"],
       link: "https://app.heyagendo.com/",
     },
     {
       id: 6,
-      technologies: ["Flutter"],
+      technologies: ["Flutter", "Dart", "Firebase"],
       link: "https://play.google.com/store/apps/details?id=com.cuidatuplata.app&pcampaignid=web_share",
     },
   ];
@@ -202,50 +228,37 @@ function Projects() {
     <ProjectsSection
       id="proyectos"
       ref={ref}
-      className={`projects-section section-fade-in ${
-        isVisible ? "visible" : ""
-      }`}
+      className={`section-fade-in ${isVisible ? "visible" : ""}`}
     >
-      <Container className="container">
-        <SectionTitle className="section-title">
-          {t.projects.title}
-        </SectionTitle>
-        <ProjectsGrid className="projects-grid">
+      <Container>
+        <SectionTitle>{t.projects.title}</SectionTitle>
+        <ProjectsGrid>
           {projects.map((project) => (
             <ProjectCard
               key={project.id}
-              className="project-card"
               onClick={() => window.open(project.link, "_blank")}
             >
-              <CardShape1 />
-              <CardShape2 />
-              <CardShape3 />
+              <CardGlow />
+              <ProjectContent>
+                <ProjectCompany>{project.company}</ProjectCompany>
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <ProjectDescription>{project.description}</ProjectDescription>
 
-              <ProjectTitle className="project-title">
-                {project.title}
-              </ProjectTitle>
-              <ProjectCompany>{project.company}</ProjectCompany>
-              <ProjectDescription className="project-description">
-                {project.description}
-              </ProjectDescription>
+                <ProjectTech>
+                  {project.technologies.map((tech, index) => (
+                    <TechTag key={index}>{tech}</TechTag>
+                  ))}
+                </ProjectTech>
 
-              <ProjectTech>
-                {project.technologies.map((tech, index) => (
-                  <TechTag key={index} className="tech-tag">
-                    {tech}
-                  </TechTag>
-                ))}
-              </ProjectTech>
-
-              <ProjectLink
-                href="#"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  window.open(project.link, "_blank");
-                }}
-              >
-                {t.projects.verProyecto}
-              </ProjectLink>
+                <ProjectLink
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {t.projects.verProyecto}
+                </ProjectLink>
+              </ProjectContent>
             </ProjectCard>
           ))}
         </ProjectsGrid>
