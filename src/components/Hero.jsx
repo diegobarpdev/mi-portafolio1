@@ -83,6 +83,20 @@ const HeroContent = styled.div`
   text-align: center;
   position: relative;
   z-index: 2;
+
+  @media (max-width: 1024px) {
+    gap: 3rem;
+  }
+
+  @media (max-width: 900px) {
+    padding: 0 1.5rem;
+    gap: 2.5rem;
+  }
+
+  @media (max-width: 480px) {
+    gap: 2rem;
+    padding: 0 1.25rem;
+  }
 `;
 
 const HeroText = styled.div`
@@ -103,6 +117,12 @@ const HeroBadge = styled.span`
   margin-bottom: 1.5rem;
   width: fit-content;
   backdrop-filter: blur(5px);
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const HeroTitle = styled.h1`
@@ -118,6 +138,24 @@ const HeroTitle = styled.h1`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  @media (max-width: 1024px) {
+    font-size: 3rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 1.8rem;
+  }
 `;
 
 const HeroSubtitle = styled.h2`
@@ -129,6 +167,19 @@ const HeroSubtitle = styled.h2`
   strong {
     color: ${colors.textWhite};
   }
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const HeroDescription = styled.p`
@@ -137,6 +188,20 @@ const HeroDescription = styled.p`
   color: ${colors.textMuted};
   line-height: 1.7;
   max-width: 700px;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 0.95rem;
+  }
 `;
 
 const HeroButtons = styled.div`
@@ -144,6 +209,18 @@ const HeroButtons = styled.div`
   gap: 1.5rem;
   flex-wrap: wrap;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 1rem;
+  }
 `;
 
 const Button = styled.a`

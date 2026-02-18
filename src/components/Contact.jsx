@@ -10,6 +10,10 @@ const ContactSection = styled.section`
   background: ${colors.bgDark};
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 480px) {
+    padding: 5rem 0;
+  }
 `;
 
 const ContactContent = styled.div`
@@ -18,6 +22,10 @@ const ContactContent = styled.div`
   padding: 0 2rem;
   position: relative;
   z-index: 2;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 const ContactTitle = styled.h2`
@@ -28,6 +36,15 @@ const ContactTitle = styled.h2`
   background: linear-gradient(135deg, ${colors.textWhite} 0%, ${colors.textSecondary} 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const ContactGrid = styled.div`
@@ -35,6 +52,11 @@ const ContactGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 `;
 
 const ContactCard = styled.div`
@@ -54,6 +76,10 @@ const ContactCard = styled.div`
     background: rgba(30, 41, 59, 0.3);
     border-color: ${colors.accent};
     transform: translateY(-5px);
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.5rem 1rem;
   }
 `;
 

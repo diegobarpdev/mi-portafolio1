@@ -1,7 +1,7 @@
 export const en = {
   // Header
   header: {
-    logo: "My Portfolio",
+    logo: "DiegoBarpDev",
     nav: {
       inicio: "Home",
       sobreMi: "About Me",

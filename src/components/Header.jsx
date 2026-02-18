@@ -11,7 +11,7 @@ const HeaderNav = styled.header`
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+  width: 100%;
   height: 90px;
   display: flex;
   align-items: center;
@@ -35,6 +35,10 @@ const NavContainer = styled.div`
   @media (max-width: 768px) {
     padding: 0 1.5rem;
   }
+
+  @media (max-width: 480px) {
+    padding: 0 1.25rem;
+  }
 `;
 
 const Logo = styled.a`
@@ -47,6 +51,10 @@ const Logo = styled.a`
   -webkit-text-fill-color: transparent;
   cursor: pointer;
   text-decoration: none;
+
+  @media (max-width: 480px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const NavMenu = styled.nav`
@@ -60,15 +68,18 @@ const NavMenu = styled.nav`
 `;
 
 const MobileMenuButton = styled.button`
-  display: none;
   background: none;
   border: none;
   color: ${colors.textWhite};
   font-size: 1.5rem;
   cursor: pointer;
-  
-  @media (max-width: 768px) {
-    display: block;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 480px) {
+    font-size: 1.35rem;
   }
 `;
 
@@ -160,6 +171,38 @@ const OverlayCloseButton = styled.button`
   }
 `;
 
+const MobileActions = styled.div`
+  display: none;
+  align-items: center;
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+`;
+
+const MobileLanguageButton = styled.button`
+  background: rgba(255, 255, 255, 0.1);
+  color: ${colors.textWhite};
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.4rem 0.8rem;
+  border-radius: ${borderRadius.md};
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: ${colors.accent};
+    border-color: ${colors.accent};
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+  }
+`;
+
 function Header() {
   const { language, toggleLanguage } = useLanguage();
   const t = translations[language];
@@ -227,15 +270,21 @@ function Header() {
             </LanguageButton>
           </NavMenu>
 
-          {/* Mobile Menu Open Button */}
-          {!isMobileMenuOpen && (
-            <MobileMenuButton
-              onClick={toggleMobileMenu}
-              aria-label="Menu"
-            >
-              <FaBars />
-            </MobileMenuButton>
-          )}
+          {/* Mobile Actions (Language + Menu) */}
+          <MobileActions>
+            <MobileLanguageButton onClick={toggleLanguage} aria-label="Cambiar idioma">
+              {language === "es" ? "EN" : "ES"}
+            </MobileLanguageButton>
+
+            {!isMobileMenuOpen && (
+              <MobileMenuButton
+                onClick={toggleMobileMenu}
+                aria-label="Menu"
+              >
+                <FaBars />
+              </MobileMenuButton>
+            )}
+          </MobileActions>
 
         </NavContainer>
       </HeaderNav>
@@ -257,9 +306,7 @@ function Header() {
               {item.label}
             </MobileNavLink>
           ))}
-          <LanguageButton onClick={toggleLanguage} aria-label="Cambiar idioma">
-            {language === "es" ? "English" : "Español"}
-          </LanguageButton>
+          {/* Language button inside overlay removed since it's now in header */}
         </OverlayContainer>,
         document.body
       )}

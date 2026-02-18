@@ -8,12 +8,20 @@ const ProjectsSection = styled.section`
   padding: 8rem 0;
   background: ${colors.bgPrimary};
   position: relative;
+
+  @media (max-width: 480px) {
+    padding: 5rem 0;
+  }
 `;
 
 const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 const SectionTitle = styled.h2`
@@ -40,6 +48,16 @@ const SectionTitle = styled.h2`
     background: ${colors.accent};
     border-radius: 2px;
   }
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const ProjectsGrid = styled.div`
@@ -47,6 +65,15 @@ const ProjectsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2.5rem;
   margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    gap: 1.5rem;
+  }
 `;
 
 const ProjectCard = styled.div`
@@ -72,6 +99,15 @@ const ProjectCard = styled.div`
       color: ${colors.accentLight};
     }
   }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.25rem;
+    border-radius: ${borderRadius.lg};
+  }
 `;
 
 const ProjectContent = styled.div`
@@ -88,6 +124,14 @@ const ProjectTitle = styled.h3`
   color: ${colors.textWhite};
   margin-bottom: 0.5rem;
   transition: color 0.3s ease;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const ProjectCompany = styled.p`
@@ -115,6 +159,11 @@ const ProjectDescription = styled.p`
   margin-bottom: 1.5rem;
   flex-grow: 1;
   font-size: 1.05rem;
+
+  @media (max-width: 480px) {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
 `;
 
 const ProjectTech = styled.div`
@@ -138,6 +187,11 @@ const TechTag = styled.span`
     background: rgba(99, 102, 241, 0.2);
     border-color: rgba(99, 102, 241, 0.4);
     transform: translateY(-1px);
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
   }
 `;
 

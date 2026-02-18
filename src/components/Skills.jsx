@@ -13,6 +13,10 @@ const SkillsSection = styled.section`
   align-items: center;
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 480px) {
+    padding: 5rem 0;
+  }
 `;
 
 const SkillsTitle = styled.h2`
@@ -25,6 +29,15 @@ const SkillsTitle = styled.h2`
   background: linear-gradient(135deg, ${colors.textWhite} 0%, ${colors.textSecondary} 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const SkillsSubtitle = styled.p`
@@ -47,6 +60,22 @@ const SkillsGrid = styled.div`
   padding: 0 2rem;
   position: relative;
   z-index: 2;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr); /* Try to keep 2 columns on mobile if possible, 180px might be tight though */
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  @media (max-width: 380px) {
+     grid-template-columns: 1fr; /* Fallback for very small screens */
+  }
 `;
 
 const SkillCard = styled.div`
@@ -70,6 +99,14 @@ const SkillCard = styled.div`
     border-color: ${colors.accent};
     box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.3);
   }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.25rem 1rem;
+  }
 `;
 
 const SkillIcon = styled.div`
@@ -88,6 +125,17 @@ const SkillIcon = styled.div`
     transform: scale(1.1);
     border-color: rgba(99, 102, 241, 0.3);
   }
+
+  @media (max-width: 768px) {
+    width: 60px;
+    height: 60px;
+  }
+
+  @media (max-width: 480px) {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+  }
 `;
 
 const SkillIconImg = styled.img`
@@ -101,6 +149,10 @@ const SkillName = styled.h3`
   font-weight: 600;
   color: ${colors.textPrimary};
   margin: 0;
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
+  }
 `;
 
 const SkillLevel = styled.span`
@@ -110,6 +162,11 @@ const SkillLevel = styled.span`
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
   font-weight: 500;
+
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+  }
 `;
 
 const SkillDescription = styled.p`

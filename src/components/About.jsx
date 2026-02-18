@@ -17,12 +17,20 @@ const AboutSection = styled.section`
   padding: 8rem 0;
   background: ${colors.bgPrimary};
   position: relative;
+
+  @media (max-width: 480px) {
+    padding: 5rem 0;
+  }
 `;
 
 const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 const SectionTitle = styled.h2`
@@ -33,6 +41,16 @@ const SectionTitle = styled.h2`
   background: linear-gradient(135deg, ${colors.textWhite} 0%, ${colors.textSecondary} 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const AboutContent = styled.div`
@@ -41,9 +59,17 @@ const AboutContent = styled.div`
   gap: 6rem;
   align-items: center;
 
+  @media (max-width: 1024px) {
+    gap: 4rem;
+  }
+
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
     gap: 3rem;
+  }
+
+  @media (max-width: 480px) {
+    gap: 2.5rem;
   }
 `;
 

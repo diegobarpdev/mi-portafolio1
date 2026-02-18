@@ -10,6 +10,10 @@ const FooterSection = styled.footer`
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
   z-index: 10;
+
+  @media (max-width: 480px) {
+    padding: 3rem 0 1.5rem;
+  }
 `;
 
 const Container = styled.div`
@@ -19,6 +23,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 const FooterContent = styled.div`
@@ -36,12 +44,21 @@ const Logo = styled.h2`
   background: linear-gradient(135deg, ${colors.textWhite} 0%, ${colors.textSecondary} 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (max-width: 480px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const SocialLinks = styled.div`
   display: flex;
   gap: 1.5rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 480px) {
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const SocialLink = styled.a`
@@ -53,56 +70,64 @@ const SocialLink = styled.a`
     color: ${colors.accent};
     transform: translateY(-3px);
   }
+
+  @media (max-width: 480px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const Copyright = styled.p`
   color: ${colors.textMuted};
   font-size: 0.9rem;
   text-align: center;
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+  }
 `;
 
 function Footer() {
-    const { language } = useLanguage();
-    const t = translations[language];
+  const { language } = useLanguage();
+  const t = translations[language];
 
-    const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear();
 
-    return (
-        <FooterSection>
-            <Container>
-                <FooterContent>
-                    <Logo>Diegobarpdev</Logo>
-                    <SocialLinks>
-                        <SocialLink
-                            href="https://github.com/diegobarpdev"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="GitHub"
-                        >
-                            <FaGithub />
-                        </SocialLink>
-                        <SocialLink
-                            href="https://www.linkedin.com/in/diegobarbechoc/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="LinkedIn"
-                        >
-                            <FaLinkedin />
-                        </SocialLink>
-                        <SocialLink
-                            href="mailto:diegobw13@gmail.com"
-                            aria-label="Email"
-                        >
-                            <FaEnvelope />
-                        </SocialLink>
-                    </SocialLinks>
-                </FooterContent>
-                <Copyright>
-                    &copy; {currentYear} Diego Barbecho. {language === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}
-                </Copyright>
-            </Container>
-        </FooterSection>
-    );
+  return (
+    <FooterSection>
+      <Container>
+        <FooterContent>
+          <Logo>DiegoBarpDev</Logo>
+          <SocialLinks>
+            <SocialLink
+              href="https://github.com/diegobarpdev"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <FaGithub />
+            </SocialLink>
+            <SocialLink
+              href="https://www.linkedin.com/in/diegobarbechoc/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin />
+            </SocialLink>
+            <SocialLink
+              href="mailto:diegobw13@gmail.com"
+              aria-label="Email"
+            >
+              <FaEnvelope />
+            </SocialLink>
+          </SocialLinks>
+        </FooterContent>
+        <Copyright>
+          &copy; {currentYear} Diego Barbecho. {language === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}
+        </Copyright>
+      </Container>
+    </FooterSection>
+  );
 }
 
 export default Footer;
