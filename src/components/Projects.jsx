@@ -90,6 +90,18 @@ const ProjectCard = styled.div`
   flex-direction: column;
   height: 100%;
 
+  ${(props) =>
+    props.$featured
+      ? `
+    border-color: rgba(245, 158, 11, 0.35);
+    box-shadow: 0 22px 45px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(245, 158, 11, 0.08);
+    background:
+      radial-gradient(circle at 20% 0%, rgba(245, 158, 11, 0.12) 0%, transparent 55%),
+      radial-gradient(circle at 100% 20%, rgba(99, 102, 241, 0.14) 0%, transparent 55%),
+      ${colors.bgCard};
+  `
+      : ""}
+
   &:hover {
     transform: translateY(-10px);
     border-color: rgba(99, 102, 241, 0.3);
@@ -99,6 +111,16 @@ const ProjectCard = styled.div`
       color: ${colors.accentLight};
     }
   }
+
+  ${(props) =>
+    props.$featured
+      ? `
+    &:hover {
+      border-color: rgba(245, 158, 11, 0.55);
+      box-shadow: 0 28px 55px -16px rgba(0, 0, 0, 0.65), 0 0 26px rgba(245, 158, 11, 0.12);
+    }
+  `
+      : ""}
 
   @media (max-width: 768px) {
     padding: 1.5rem;
@@ -233,6 +255,23 @@ const CardGlow = styled.div`
   }
 `;
 
+const FeaturedPill = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.22) 0%, rgba(99, 102, 241, 0.16) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: ${colors.textWhite};
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+`;
+
 function Projects() {
   const { language } = useLanguage();
   const t = translations[language];
@@ -270,13 +309,26 @@ function Projects() {
       technologies: ["Flutter", "Dart", "Firebase"],
       link: "https://play.google.com/store/apps/details?id=com.cuidatuplata.app&pcampaignid=web_share",
     },
+    {
+      id: 7,
+      technologies: ["React", "Vite", "PWA", "Offline"],
+      link: "https://cuidatuplataweb.vercel.app/",
+    },
+    {
+      id: 8,
+      featured: true,
+      technologies: ["React", "Vite", "Diseño a medida", "Landing"],
+      link: "https://scaledbweb.vercel.app/",
+    },
   ];
 
   // Combinar datos estáticos con traducciones
-  const projects = projectsData.map((project, index) => ({
-    ...project,
-    ...t.projects.items[index],
-  }));
+  const projects = projectsData
+    .map((project, index) => ({
+      ...project,
+      ...t.projects.items[index],
+    }))
+    .sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)));
 
   return (
     <ProjectsSection
@@ -290,10 +342,12 @@ function Projects() {
           {projects.map((project) => (
             <ProjectCard
               key={project.id}
+              $featured={Boolean(project.featured)}
               onClick={() => window.open(project.link, "_blank")}
             >
               <CardGlow />
               <ProjectContent>
+                {project.featured ? <FeaturedPill>Premium</FeaturedPill> : null}
                 <ProjectCompany>{project.company}</ProjectCompany>
                 <ProjectTitle>{project.title}</ProjectTitle>
                 <ProjectDescription>{project.description}</ProjectDescription>

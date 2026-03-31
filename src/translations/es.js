@@ -119,6 +119,18 @@ export const es = {
         company: "BarpDev",
         description: "Aplicación móvil para el control financiero personal.",
       },
+      {
+        title: "CuidaTuPlata Web (Offline)",
+        company: "BarpDev",
+        description:
+          "Versión web sencilla para registrar ingresos y gastos. Funciona offline para que puedas usarla sin conexión y mantener tu control financiero al día.",
+      },
+      {
+        title: "ScaleDB Web (Plantillas)",
+        company: "Servicio de páginas web",
+        description:
+          "Landing para contratar mi servicio de creación de páginas web (diseño a medida). Orientada a conversión: contacto rápido, propuesta clara y navegación simple.",
+      },
     ],
   },
 

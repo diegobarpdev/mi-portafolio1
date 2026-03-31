@@ -119,6 +119,18 @@ export const en = {
         company: "BarpDev",
         description: "Mobile application for personal financial control.",
       },
+      {
+        title: "CuidaTuPlata Web (Offline)",
+        company: "BarpDev",
+        description:
+          "A simpler web version to track income and expenses. Works offline so you can keep managing your finances even without an internet connection.",
+      },
+      {
+        title: "ScaleDB Web (Templates)",
+        company: "Website service",
+        description:
+          "Landing page to hire my website creation service (custom design). Built for conversion: fast contact, clear offer, and simple navigation.",
+      },
     ],
   },
 
